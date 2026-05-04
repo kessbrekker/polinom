@@ -40,12 +40,19 @@ export class Grafik {
     }
 
     this.nacrtajKS();
-    if (this.aktivenPolinom && this.aktivenPolinom.validen) this.nacrtajGrafik();
+    if (this.aktivenPolinom && this.aktivenPolinom.validen) {
+      if (this.aktivenPolinom.isMultivariate) {
+        this.nacrtajImplicitno();
+      } else {
+        this.nacrtajGrafik();
+      }
+    }
   }
 
   x(logichkaX) { return 25.5 + ((logichkaX - this.x1) * 600) / (this.x2 - this.x1); }
   y(logichkaY) { return 25.5 + ((logichkaY - this.y2) * 600) / (this.y1 - this.y2); }
   logichkaX(fizichkaX) { return this.x1 + ((fizichkaX - 25 - 1) * (this.x2 - this.x1)) / 600; }
+  logichkaY(fizichkaY) { return this.y2 + ((fizichkaY - 25.5) * (this.y1 - this.y2)) / 600; }
 
   nacrtajKS() {
     let i9, x9, xStrelka, yStrelka;
@@ -183,6 +190,88 @@ export class Grafik {
     this.G.moveTo(-0.5, this.y(this.grafikY[0]));
     for (i8 = 1; i8 <= this.grafik.width + 1; i8++) {
       this.G.lineTo(i8 - 0.5, this.y(this.grafikY[i8]));
+    }
+    this.G.stroke();
+  }
+
+  nacrtajImplicitno() {
+    let fn = this.aktivenPolinom.compile();
+    let width = this.grafik.width;
+    let height = this.grafik.height;
+
+    let step = 2; 
+    let cols = Math.ceil(width / step);
+    let rows = Math.ceil(height / step);
+
+    let values = new Float32Array((cols + 1) * (rows + 1));
+    
+    for (let r = 0; r <= rows; r++) {
+      let fizY = r * step;
+      let logY = this.logichkaY(fizY);
+      for (let c = 0; c <= cols; c++) {
+        let fizX = c * step;
+        let logX = this.logichkaX(fizX);
+        values[r * (cols + 1) + c] = fn(logX, logY);
+      }
+    }
+
+    this.G.beginPath();
+    this.G.strokeStyle = "#38bdf8";
+    this.G.lineWidth = "4";
+    this.G.globalAlpha = 1;
+
+    let getPoint = (v1, v2, p1, p2) => {
+      if (v1 === v2) return p1;
+      let t = v1 / (v1 - v2);
+      return { x: p1.x + t * (p2.x - p1.x), y: p1.y + t * (p2.y - p1.y) };
+    };
+
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        let idx = r * (cols + 1) + c;
+        let vTL = values[idx];
+        let vTR = values[idx + 1];
+        let vBL = values[idx + cols + 1];
+        let vBR = values[idx + cols + 2];
+
+        let pTL = { x: c * step, y: r * step };
+        let pTR = { x: (c + 1) * step, y: r * step };
+        let pBL = { x: c * step, y: (r + 1) * step };
+        let pBR = { x: (c + 1) * step, y: (r + 1) * step };
+
+        let state = 0;
+        if (vTL > 0) state |= 1;
+        if (vTR > 0) state |= 2;
+        if (vBR > 0) state |= 4;
+        if (vBL > 0) state |= 8;
+
+        let points = [];
+        if (state === 1 || state === 14) {
+          points.push(getPoint(vTL, vTR, pTL, pTR), getPoint(vTL, vBL, pTL, pBL));
+        } else if (state === 2 || state === 13) {
+          points.push(getPoint(vTL, vTR, pTL, pTR), getPoint(vTR, vBR, pTR, pBR));
+        } else if (state === 4 || state === 11) {
+          points.push(getPoint(vTR, vBR, pTR, pBR), getPoint(vBL, vBR, pBL, pBR));
+        } else if (state === 8 || state === 7) {
+          points.push(getPoint(vTL, vBL, pTL, pBL), getPoint(vBL, vBR, pBL, pBR));
+        } else if (state === 3 || state === 12) {
+          points.push(getPoint(vTL, vBL, pTL, pBL), getPoint(vTR, vBR, pTR, pBR));
+        } else if (state === 6 || state === 9) {
+          points.push(getPoint(vTL, vTR, pTL, pTR), getPoint(vBL, vBR, pBL, pBR));
+        } else if (state === 5 || state === 10) {
+          points.push(getPoint(vTL, vTR, pTL, pTR), getPoint(vTL, vBL, pTL, pBL));
+          points.push(getPoint(vBL, vBR, pBL, pBR), getPoint(vTR, vBR, pTR, pBR));
+        }
+
+        if (points.length >= 2) {
+          this.G.moveTo(points[0].x, points[0].y);
+          this.G.lineTo(points[1].x, points[1].y);
+        }
+        if (points.length === 4) {
+          this.G.moveTo(points[2].x, points[2].y);
+          this.G.lineTo(points[3].x, points[3].y);
+        }
+      }
     }
     this.G.stroke();
   }

@@ -7,11 +7,12 @@ import { Polinom } from "@/lib/Polinom";
 import { Grafik } from "@/lib/Grafik";
 
 const EXAMPLES = [
+  "(x^2 + y^2 - 1)^3 - x^2*y^3 = 0",
+  "(x+y)^2",
+  "x^2 - y^2",
   "(x+1)^3",
-  "2x + 5",
   "x^2 - 4x + 4",
   "(x^6-1)/(x^2-1)",
-  "x^3 - x",
 ];
 
 const GRID_SIZES = ["4 × 4", "10 × 10", "20 × 20", "60 × 60", "200 × 200"];
@@ -52,7 +53,9 @@ export default function PolinomApp() {
     if (!polinom || !polinom.validen) return null;
 
     let text = "";
-    if (polinom.n === 0) {
+    if (polinom.isMultivariate) {
+      text = `Bu ifade birden fazla değişken (${polinom.variables.join(", ")}) içerdiği için çok değişkenli (multivariate) bir polinomdur.`;
+    } else if (polinom.n === 0) {
       let a = polinom.a[0] + "";
       a = a.replace(".", ",");
       text = `Herhangi bir x değeri için aynı değere P(x) sahip, sabit bir polinom (sıfırıncı dereceden) elde edilir. P(x) = ${a}`;
