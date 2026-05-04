@@ -1,0 +1,779 @@
+html, body, button {
+  font-family:
+    "Book Antiqua",
+    "Palatino Linotype",
+     Palatino,
+    "Bookman Old Style",
+     Times,
+    "Times New Roman",
+     serif;
+  font-size: 20px;
+  text-align: center;
+  word-break: keep-all;
+  line-height: 1.2;
+  background-color: #FDEEE0; /* Кремова */
+}
+
+#osnova_flex {
+  width: 98%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  /* justify-content: space-around;center; */
+  flex-wrap: wrap;
+  /*background-color: #FFCC00; /* Кремова */
+}
+
+/* Двата div контејнери за внесување полином и негов график се со иста големина */
+#vnesuvanje, #grafichko_prikazhuvanje {
+
+  display: block;
+  height: auto;
+
+  /*   width: 671px;
+  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #EEE0D0; /* Kremova Kafeava */
+
+  width: 661px;
+  padding: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border: dotted 5px #F8E9DB; /* Одвај видлива граница со точки */
+
+}
+
+#vnesuvanje {
+
+  width: 661px;
+  display: flex;
+  flex-flow: column nowrap;
+
+  /*float: left;*/
+}
+
+#grafichko_prikazhuvanje {
+  position: relative;
+
+  /*float: right;*/
+}
+
+
+#naslov {
+
+  display: inline-block;
+  padding: 30px 0px 30px 0px;
+
+  font-size: 28px;
+  font-weight: bold; 
+  text-align: center;
+  color: #632800;  /* кафеава */
+}
+
+table, tr, th, td {
+  border: 0px solid #042;
+  border-collapse: collapse;
+  padding: 0px;
+  margin: 0px;
+
+}
+
+#vnes_i_izlez_table {
+  /* display: flex;
+  flex-flow: row wrap; */
+  width: 100%;
+  border: 0px;
+  /* vertical-align: middle; */
+}
+
+#vnes_row {
+  /* display: flex; */
+  width: auto;
+  /* background-color: #CCFC44; */
+  /* flex: 1 100%; */
+}
+
+#vnes_upatstvo {
+  text-align: left;
+  /* background-color: #ACFC44; */
+  padding-left: 5px;
+  padding-bottom: 6px;
+}
+
+#Ax {
+  /* display: flex; */
+  vertical-align: top;
+  text-align: right;
+  white-space: nowrap;
+  width: 70px;
+  /*float: right;*/
+
+  /* background: #557755; */
+  height:32px;
+  line-height: 32px;
+}
+
+#Ax > span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+#vnes_cell {
+  vertical-align: middle;
+  text-align: left;
+  height:32px;
+  line-height: 32px;
+  padding-bottom: 30px;
+  /* width: 600px;  */
+}
+
+#vnes {
+  /*display: inline-block; */
+  text-align: left;
+  background: #FFFFFF;
+
+  border-radius: 15px;
+  border: none;
+  color: #000;
+  /* font-size: 20px;
+  padding: 10px 20px 10px 20px; */
+  font:inherit;
+  vertical-align: middle;
+  padding: 0px 5px;
+  /* line-height: 32px; */
+  height: 32px;
+  line-height: 32px;
+
+  width: 200px;
+  max-width: 605px;
+
+  cursor: text; /* pointer; */
+
+  transition: box-shadow 0.2s;
+
+  box-shadow: 0 2px 2px 0 rgba(20,20,20,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+
+  /* box-shadow: 0px 0px 22px 2px #888888; */
+
+}
+
+#vnes.zlatenSjaj {
+  /* color: #00F !important;
+    transition: all .2s ease-out; */
+  animation-name: zlatenSjajAnimacija;
+  animation-iteration-count: 1;
+  animation-duration: 0.6s;
+}
+
+
+#vnes:hover {
+
+  box-shadow: 0 3px 8px 0 rgba(20,20,20,0.4), 0 0 0 1px rgba(0,0,0,0.08);
+  /* background-color: #CEF; */
+
+}
+
+
+/* Бришење на синиот правоаголник кога се внесува полиномот */
+#vnes:focus{
+  box-shadow: 0px 3px 8px 1px rgba(0,90,200,0.6), 0 0 0 1px rgba(0,0,0,0.08);
+  outline: none;
+}
+
+#greshka_ili_izlez {
+  text-align: left;
+  padding-left: 5px;
+  padding-bottom: 8px;
+}
+
+#Px {
+  opacity: 0.3;
+
+  vertical-align: top;
+  text-align: right;
+  white-space: nowrap;
+
+  /*float: right;*/
+
+  /* background: #557755; */
+  /* height:32px; */
+  line-height: 1.7;
+}
+
+#matematichki_izlez {
+  vertical-align: top;
+  text-align: left;
+  line-height: 1.7;
+}
+
+/* поле за приказ на решенијата на равенките P(x)=0 до втор степен */
+#reshenie_ravenka {
+  display: block;
+  vertical-align: top;
+  text-align: left;
+  line-height: 1.4;
+
+  margin-left: 13px;
+  margin-top: 6px;
+  margin-bottom: 5px;
+
+}
+
+/* растегливо флексибилно поле од левата страна, што овозможува
+   копчињата за приимери да бидат распределени најдолу */
+#prazno_levo_rasteglivo {
+
+  display: flex;
+  margin-bottom: auto; /* Ги турка следните елементи најдолу */
+
+
+  background: #5544A5;
+}
+
+#primeri_flex {
+
+  display: flex;
+  flex-direction: column;
+
+  /* background: #FF74A5; */
+
+}
+
+#vashi_primeri_text {
+
+  padding-top: 16px;
+  padding-left: 70px;
+  text-align: left;
+
+}
+
+#vashi_primeri {
+
+  display: flex;
+  flex-flow: row wrap;
+
+  max-height: 150px;
+  overflow-y: auto;
+
+  /* justify-content: space-between; */
+
+
+  /* background: #5574A5; */
+
+}
+
+#razni_primeri_text {
+
+  padding-top: 16px;
+  padding-left: 70px;
+  text-align: left;
+
+}
+
+
+#razni_primeri {
+
+  display: flex;
+  flex-flow: row wrap;
+  padding-bottom: 0px;
+
+  /* justify-content: space-between; */
+
+
+  /* background: #5574A5; */
+
+}
+
+
+.primer_rasteglivo {
+  display: flex;
+  flex-grow: 1;
+	border:none;
+	/*background:none;*/
+  /* background-color:#954b05; */
+	padding:0;
+	margin: 10px 0px 0px 0px;
+
+	width:auto;
+	overflow:visible;
+	text-align:center;
+  font:inherit;
+	white-space:nowrap;
+
+  cursor: pointer;
+  user-select: text;
+
+	height:40px;
+	line-height:38px;
+}
+
+.primer_rasteglivo:focus {
+    outline: none;
+}
+
+.primer_rasteglivo span, .primer_rasteglivo em {
+	display:flex;
+  flex-grow: 1;
+	height:40px;
+	line-height:38px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: text-top;
+	/* color:#954b05; */
+  color: #632800;  /* кафеава */
+}
+
+.primer_rasteglivo span {
+	padding-left:25px;
+	background: url("https://cdn.glitch.com/429fec58-e1bb-4ee7-9767-9a46102751a0%2Fdolg_paralelogram_lev_isechok.png?1520095780698") no-repeat 0 0;
+  /* background-color: #0de; */
+}
+
+.primer_rasteglivo:enabled:hover span {
+	background: url("https://cdn.glitch.com/429fec58-e1bb-4ee7-9767-9a46102751a0%2Fdolg_paralelogram_spushten_lev_isechok.png?1520095780381") no-repeat 0 0;
+  /* background-color: #0de; */
+}
+
+.primer_rasteglivo em {
+	/* font-style:normal;*/
+	padding-right:25px;
+	/* background:url(dolgo_trapezno.png) no-repeat 100% 0; */
+  background: url("https://cdn.glitch.com/429fec58-e1bb-4ee7-9767-9a46102751a0%2Fdolg_paralelogram.png?1520095781405") no-repeat 100% 0;
+  /* background-color: #088; */
+}
+
+.primer_rasteglivo:enabled:hover em {
+  background: url("https://cdn.glitch.com/429fec58-e1bb-4ee7-9767-9a46102751a0%2Fdolg_paralelogram_spushten.png?1520095782030") no-repeat 100% 0;
+  /* background-color: #088; */
+}
+
+.primer_rasteglivo > span > em > div {
+   display: inline-block;
+   margin-left: auto;
+   margin-right: auto;
+   padding-left: 1px;
+   padding-right: 1px;
+   text-align: center;
+   user-select: text;
+   font-style:normal;
+}
+
+.primer_rasteglivo:enabled:hover > span > em > div {
+  margin-top: 2px;
+  padding-left: 0px;
+  padding-right: 2px;
+  /* height: 20px; */
+  /* text-decoration: overline; */
+  text-shadow: 0px -1px 4px #08cdfd;
+
+  /* vertical-align:-13px; */
+  /* font-size: 19px; */
+  color: #060200;  /* црна */
+  /* transform: scale(1, 0.93); */
+}
+
+.primer_rasteglivo:focus > span > em > div {
+  background-color:#00CCFF3A;
+  text-shadow: 0px -1px 4px #06addd;
+  color: #060200;  /* црна */
+  /* transform: scale(1, 0.93); */
+}
+
+
+/* Контејнер за копчињата за избор на координатен систем, кои се додаваат динамички од JS */
+#izberiKS_flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 651px;
+  margin: auto;
+  position: relative;
+  /*position: relative;*/
+  /* background-color: #AACDFD; */
+}
+
+
+.izberiKS_kopche {
+  display: inline-block;
+  background: #0077dd;
+  background-image: linear-gradient(to bottom, #0099dd, #0077dd, #113872);
+  border-radius: 15px;
+  color: #fff;
+  /* font-size: 20px;
+  padding: 10px 20px 10px 20px; */
+  font:inherit;
+  vertical-align: text-top;
+	padding: 0px 20px;
+  margin-bottom: 10px;
+	/* line-height: 32px; */
+  height: 32px;
+  cursor: pointer;
+
+  transition: all 0.6s;
+
+}
+
+
+/* Отстранување на сината рамка кога е кликнато копчето */
+.izberiKS_kopche:focus {
+    outline: none;
+}
+
+.izberiKS_kopche:active {
+    color: #fff0C8;
+}
+
+.izberiKS_kopche:enabled:hover {
+  background: #6c2eb8;
+  background-image: linear-gradient(to bottom, #66c7ff, #6c2eb8, #6c2eb8);
+}
+
+.izberiKS_kopche:checked {
+    color: #0f2;
+}
+
+.izberiKS_kopche > div {
+  display: inline-block;
+}
+
+.izberiKS_kopche:enabled:hover > div {
+  vertical-align:-3px;
+  /* font-size: 19px;  */
+  transform: scale(1, 0.91);
+}
+
+.izberiKS_kopche:disabled {
+  color: #fff0C8;
+  background: #6c2eb8;
+  background-image: linear-gradient(to bottom, #6c2eb8, #6c2eb8, #301268);
+  /* background-position: 20px 20px; /* проба за мала анимација
+  /* transform: scale(1.3, 1.3); */
+  cursor: move;
+}
+
+.izberiKS_kopche:disabled > div {
+  /* vertical-align:-3px;
+  /* font-size: 19px;  */
+  transform: scale(1.07, 1.07);
+}
+
+
+/* Контејнер за копчето за испраќање на полиномот и дозволата за примање */
+#isprati_flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 651px;
+  margin: auto;
+  position: relative;
+  /*position: relative;*/
+  /* background-color: #AACDAD; */
+}
+
+#isprati_kopche {
+  /* background-image: linear-gradient(to bottom, #6c2eb8, #6c2eb8, #301268); */
+
+  background: url("https://cdn.glitch.com/429fec58-e1bb-4ee7-9767-9a46102751a0%2Fisprati_strelki_nadesno.png?1520095780964") repeat 100% 0px;
+  transition: background-position 0s;
+  margin: 10px 25px 0px 0px;
+  cursor: ew-resize;
+
+}
+
+#isprati_kopche.strelkiNadesno {
+  /* background-image: linear-gradient(to bottom, #6c2eb8, #6c2eb8, #301268); */
+
+  transition: background-position 5s;
+  background: url("https://cdn.glitch.com/429fec58-e1bb-4ee7-9767-9a46102751a0%2Fisprati_strelki_nadesno.png?1520095780964") repeat 0% 0px;
+  cursor: wait;
+
+}
+
+/*
+#isprati_kopche:hover {
+  transition: background-position 5s;
+  background:url(kopchinja/isprati_strelki_nadesno.png) repeat 0px 0px;
+} */
+
+#isprati_kopche:hover > div {
+  vertical-align:-4px;
+  /* font-size: 19px;  */
+  transform: scale(1, 0.91);
+}
+
+
+#dozvoliPriem_div {
+
+  /* background:url(kopchinja/isprati_strelki_nadesno.png) repeat 100% 0px;
+  transition: background-position 0s; */
+  display: flex;
+
+  margin-top: 10px;
+
+  /* cursor: pointer; */
+
+}
+
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2.2);
+  margin-right: 12px;
+}
+
+/* Кодот за squaredTwo е преземен од
+https://codepen.io/bbodine1/pen/novBm
+*/
+
+.squaredTwo {
+  width: 33px;
+  height: 32px;
+  position: relative;
+  margin-top: 10px;
+  background: #fcfff4;
+  /* background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%); */
+  background: linear-gradient(to bottom, #74fcff 0%, #37dfe5 40%, #2db3be 100%);
+  -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+
+  transition: all 0s;
+}
+.squaredTwo .squaredTwo_label {
+  width: 23px;
+  height: 22px;
+  cursor: pointer;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  /* background: linear-gradient(to bottom, #2222bb 0%, #4548dd 100%); */
+  background-image: linear-gradient(to bottom, #66c7ff, #6c2eb8, #6c2eb8);
+  -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.5), 0px 2px 0px white;
+          box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.5), 0px 2px 2px white;
+}
+.squaredTwo .squaredTwo_label:after {
+  content: '';
+  width: 11px;
+  height: 6px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border: 4px solid #fffdf0;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  -webkit-transform: rotate(-50deg);
+          transform: rotate(-50deg);
+}
+.squaredTwo .squaredTwo_label:hover::after {
+  opacity: 0.27;
+}
+.squaredTwo input[type=checkbox] {
+  visibility: hidden;
+}
+.squaredTwo input[type=checkbox]:checked + .squaredTwo_label:after {
+  opacity: 1;
+}
+
+#dozvoliPriem_text {
+  display: inline-block;
+  position: relative;
+  margin-top: 14px;
+  margin-left: 8px;
+
+  /* background-color: #88fc42; */
+  transition: background-color 0.3s;
+
+  overflow-x: visible;
+  white-space: nowrap;
+  width: auto;
+}
+
+
+#dozvoliPriem_text.zelenSjaj {
+/* background-image: linear-gradient(to bottom, #6c2eb8, #6c2eb8, #301268); */
+
+  background-color: #99ff00;
+
+}
+
+.languagepicker li.zlatenSjaj {
+  /* color: #00F !important;
+    transition: all .2s ease-out; */
+  animation-name: zlatenSjajAnimacija;
+  animation-iteration-count: 1;
+  animation-duration: 0.6s;
+}
+
+/* Ова е платното (canvas) на кој се црта графикот */
+#grafik_canvas {
+  /*
+  width: 651px;
+  height: 481px;
+  */
+  display: block;
+  margin: auto;
+  position: relative;
+  background-color: #FDFDFD;
+}
+
+#nadGrafik {
+  display: block;
+  position: absolute;
+  left: 25px;
+  width: 651px;
+  margin: auto;
+  z-index:77;
+  background-color: #664477;
+  opacity: 0.3;
+
+
+}
+
+button {
+    /* background-color: #4CAF50; /* Green */
+    border: none;
+    display: inline-block;
+    /*
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px; */
+}
+
+
+/* Неколку CSS класи за анимирано мени за избор на јазик, преземени од примерот
+https://codepen.io/axel1998/pen/RWOpXq
+а знамињата се обезбедени од https://www.iconfinder.com/ */
+.languagepicker {
+	background-color: #FFF;
+	padding: 0;
+	height: 32px;
+  width: 208px;
+	overflow: hidden;
+  margin: 0px;
+	/*margin: 0 50px 10px 0;
+  непотребно да се поставува ако е во flex контејнер */
+  text-align: left;
+	vertical-align: text-top;
+}
+
+.languagepicker:hover {
+	/* don't forget the 1px border */
+	height: 81px;
+}
+
+.languagepicker a{
+	color: #000;
+	text-decoration: none;
+}
+
+.languagepicker li {
+	display: block;
+  white-space: nowrap;
+	padding: 0px 20px;
+	line-height: 32px;
+	border-top: 3px solid #ADE;
+  cursor: pointer;
+}
+
+.languagepicker li:hover{
+	background-color: #CEF;
+  transition: all .2s ease-out;
+}
+
+.languagepicker li:first-child {
+	border: none;
+	background: #FFF !important;
+  cursor: s-resize;
+}
+
+.languagepicker li img {
+	margin-right: 8px;
+  vertical-align:-2px;
+}
+
+.languagepicker li:hover > img {
+  vertical-align:-3px;
+  height: 18px;
+  width: 28px;
+  /* transition: all .5s ease-in-out; */
+}
+
+
+@keyframes zlatenSjajAnimacija {
+  0% { background-color: white;
+       color: black; }
+  40% { background-color: #FFB;
+      color: #D44; }
+  60% { background-color: #FFB;
+          color: #D44; }
+  100% { background-color: white;
+      color: black; }
+}
+
+
+
+.roundborders {
+	border-radius: 15px;
+}
+
+.large:hover {
+	/*
+	don't forget the 1px border!
+	The first language is 40px heigh,
+	the others are 41px
+
+  height: 245px;
+
+  Формула за висина 5 јазици по 32 пиксели, плус 4 празнини по 3 пиксели
+   = 160 + 12 = 172px
+	*/
+
+	height: 172px;
+}
+
+
+/* Ова е флексибилен контејнер за избор на јазик, кој има апсолутна позиција
+   што е НАД останатите содржини во левата половина наменета за внесување */
+#jazik_flex {
+  display: flex;
+  position: absolute;
+  z-index:44;
+  /* background-color: #664477; */
+  width: inherit;
+  justify-content: flex-end;
+  /* justify-content: space-around;center; */
+  flex-wrap: wrap;
+  font-size: 17px;
+}
+
+/* Ова е бланко копија на флексибилниот контејнер за избор на јазик, кој има
+   релативна позиција за да не се меша со останатите содржини во левата половина */
+#jazik_flex_blanko {
+   display: flex;
+   position: relative;
+   /* background-color: #002277; */
+   height: 32px;
+   justify-content: flex-end;
+   /* justify-content: space-around;center; */
+   flex-wrap: wrap;
+   font-size: 17px;
+}
+
+#select_language {
+  /* background-color: #7EE; */
+  margin-top: 7px;
+  margin-right: 7px;
+}
+    
