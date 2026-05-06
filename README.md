@@ -2,16 +2,21 @@ Bu, [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-nex
 
 ## Başlarken
 
-(NOT: 'app' olan yeni versiyonu çalıştırmak için kullanınız. 'legacy_app' saf html'dir)
+(NOT: 'app' olan yeni versiyonu çalıştırmak için kullanınız. 'legacy_app' saf html'dir) 
+
 İlk olarak, geliştirme sunucusunu çalıştırın:
 
 ```bash
+npm install
 npm run dev
 # veya
+yarn install
 yarn dev
 # veya
+pnpm install
 pnpm dev
 # veya
+bun install
 bun dev
 ```
 
