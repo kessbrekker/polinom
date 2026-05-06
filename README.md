@@ -8,16 +8,8 @@ Bu, [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-nex
 
 ```bash
 npm install
+# Modülleri yükledikten sonra çalıştırın:
 npm run dev
-# veya
-yarn install
-yarn dev
-# veya
-pnpm install
-pnpm dev
-# veya
-bun install
-bun dev
 ```
 
 Sonucu görmek için [http://localhost:3000](http://localhost:3000) adresini tarayıcınızla açın.
